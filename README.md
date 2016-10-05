@@ -2,7 +2,7 @@
 
 ### Steps to run the application
 
-1. mvn clean install
+1. mvn spring-boot:run
 
 
 Reference:

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.arpit.jsr.controller",
-		"com.arpit.jsr.validator" })
+		"com.arpit.jsr.validator", "com.arpit.jsr.exception.handler" })
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
 }
