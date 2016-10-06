@@ -16,6 +16,12 @@
 					Error</td>
 			</tr>
 			<tr>
+				<td>City:</td>
+				<td><input type="text" th:field="*{address.city}" /></td>
+				<td th:if="${#fields.hasErrors('address.city')}"
+					th:errors="*{address.city}">City Error</td>
+			</tr>
+			<tr>
 				<td><button type="submit">Submit</button></td>
 			</tr>
 		</table>

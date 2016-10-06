@@ -1,5 +1,6 @@
 package com.arpit.jsr.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,6 +14,9 @@ public class PersonForm {
 	@NotNull(message = "Age should not be null")
 	@Min(18)
 	private Integer age;
+
+	@Valid
+	private Address address;
 
 	public String getName() {
 		return this.name;
@@ -30,7 +34,18 @@ public class PersonForm {
 		this.age = age;
 	}
 
-	public String toString() {
-		return "Person(Name: " + this.name + ", Age: " + this.age + ")";
+	public Address getAddress() {
+		return address;
 	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonForm [name=" + name + ", age=" + age + ", address="
+				+ address + "]";
+	}
+
 }
