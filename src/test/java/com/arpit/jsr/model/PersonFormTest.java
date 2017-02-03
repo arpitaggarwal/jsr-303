@@ -33,6 +33,6 @@ public class PersonFormTest {
 	public void testPersonForm() {
 		Set<ConstraintViolation<PersonForm>> constraintViolations = localValidatorFactory
 				.validate(new PersonForm());
-		Assert.assertTrue("Validation error", constraintViolations.size() == 1);
+		Assert.assertTrue("Validation error", constraintViolations.size() == 2);
 	}
 }

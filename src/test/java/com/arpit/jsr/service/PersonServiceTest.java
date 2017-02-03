@@ -2,7 +2,7 @@ package com.arpit.jsr.service;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import javax.validation.ConstraintDeclarationException;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,15 +28,24 @@ public class PersonServiceTest {
 	public ExpectedException expectedException = ExpectedException.none();
 
 	@Test
+	public void test() {
+		Address address = new Address();
+		address.setCity("City");
+		address.setCountry("Country");
+		personService.add("Arpit", address);
+	}
+
+	@Test
 	public void testAddPerson() {
-		expectedException.expect(ConstraintDeclarationException.class);
+		expectedException.expect(ConstraintViolationException.class);
 		personService.add(null, new Address());
 	}
 
 	@Test
 	public void testAddPersonUsingAssertj() {
-		assertThatExceptionOfType(ConstraintDeclarationException.class)
-				.isThrownBy(() -> personService.add(null, new Address()));
+		assertThatExceptionOfType(ConstraintViolationException.class)
+				.isThrownBy(() -> personService.add(null, new Address()))
+				.matches(e -> e.getConstraintViolations().size() == 2);
 	}
 
 	@Configuration
