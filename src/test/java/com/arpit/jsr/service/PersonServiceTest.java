@@ -1,7 +1,7 @@
 package com.arpit.jsr.service;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import javax.validation.ConstraintViolationException;
 
 import org.junit.Rule;
@@ -32,7 +32,8 @@ public class PersonServiceTest {
 		Address address = new Address();
 		address.setCity("City");
 		address.setCountry("Country");
-		personService.add("Arpit", address);
+		
+		assertThat(personService.add("Arpit", address)).extracting("city").isEqualTo("City");
 	}
 
 	@Test
@@ -40,7 +41,10 @@ public class PersonServiceTest {
 		expectedException.expect(ConstraintViolationException.class);
 		personService.add(null, new Address());
 	}
-
+	
+	/**
+	 * Reference - http://joel-costigliola.github.io/assertj/assertj-core-features-highlight.html#exception-assertion
+	 */
 	@Test
 	public void testAddPersonUsingAssertj() {
 		assertThatExceptionOfType(ConstraintViolationException.class)
